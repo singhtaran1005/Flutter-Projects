@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+
+import 'quizbrain.dart';
+
+QuizBrain quizbrain = QuizBrain();
+
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -25,22 +30,24 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> scorekeeper = [
-      ];
+  List<Icon> scorekeeper = [];
 
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-  ]; 
+  // List<String> questions = [
+  // 'You can lead a cow down stairs but not up stairs.',
+  //'Approximately one quarter of human bones are in the feet.',
+  //'A slug\'s blood is green.',
+  //];
 
-  List<bool> answers = [
-    false,
-    true,
-    true,
-  ];
+  //Question q1 = Question(q:'You can lead a cow down stairs but not up stairs.' , a: false);
 
-  int quesnumber = 0;
+  //List<bool> answers = [
+  //false,
+  //true,
+  //true,
+  //];
+
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[quesnumber],
+                quizbrain.getquestext(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -78,19 +85,21 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                
 
-              bool correctAnswer = answers[quesnumber];
-              if(correctAnswer==true){
-                print('user got it right');
-              }
-              else{
-                print('user got it wrong');
-              }
+                bool correctAnswer = quizbrain.getcorrectanswer();
+
+
+                if (correctAnswer == true) {
+                  print('user got it right');
+                } else {
+                  print('user got it wrong');
+                }
 
                 setState(() {
-                  quesnumber++;
+                  quizbrain.nextques();
                 });
-                 
+
                 //The user picked true.
               },
             ),
@@ -109,18 +118,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                 bool correctAnswer = answers[quesnumber];
-              if(correctAnswer==false){
-                print('user got it right');
-              }
-              else{
-                print('user got it wrong');
-              }
+                bool correctAnswer = quizbrain.getcorrectanswer();
+                if (correctAnswer == false) {
+                  print('user got it right');
+                } else {
+                  print('user got it wrong');
+                }
 
                 setState(() {
-                 quesnumber++; 
+                  quizbrain.nextques();
                 });
-                  
+
                 //The user picked false.
               },
             ),
@@ -133,5 +141,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-
