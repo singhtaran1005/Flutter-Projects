@@ -1,54 +1,63 @@
 import 'questions.dart';
 
 class QuizBrain {
-
-  
-  int _quesnumber = 0; 
+  int _quesnumber = 0;
 
   List<Question> _quesbank = [
-    Question('Some cats are actually allergic to humans', a: true),
-    Question('You can lead a cow down stairs but not up stairs.', a:false),
-    Question('Approximately one quarter of human bones are in the feet.', a:true),
-    Question('A slug\'s blood is green.', a:true),
-    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', a:true),
-    Question('It is illegal to pee in the Ocean in Portugal.', a:true),
+    Question('Some cats are actually allergic to humans', true),
+    Question('You can lead a cow down stairs but not up stairs.',  false),
+    Question('Approximately one quarter of human bones are in the feet.', true),
+    Question('A slug\'s blood is green.', true),
+    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', true),
+    Question('It is illegal to pee in the Ocean in Portugal.', true),
     Question(
         'No piece of square dry paper can be folded in half more than 7 times.',
-        a:false),
+        false),
     Question(
         'In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.',
-        a:true),
+        true),
     Question(
         'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',
-        a:false),
+        false),
     Question(
         'The total surface area of two human lungs is approximately 70 square metres.',
-        a:true),
-    Question('Google was originally called \"Backrub\".', a:true),
+        true),
+    Question('Google was originally called \"Backrub\".', true),
     Question(
         'Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.',
-        a:true),
+        true),
     Question(
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
-        a:true),
+        true),
   ];
 
-
-  void nextques(){
-    if(_quesnumber <_quesbank.length){
-    _quesnumber++;}
+  void nextques() {
+    if (_quesnumber < _quesbank.length) {
+      _quesnumber++;
+    }
     print(_quesnumber);
-    print(_quesbank.length-1);
-
+    print(_quesbank.length - 1);
   }
 
- 
-
-  String getquestext(){
-     return _quesbank[_quesnumber].questionText;
+  String getquestext() {
+    return _quesbank[_quesnumber].questionText;
   }
 
-  bool getcorrectanswer(){
+  bool getcorrectanswer() {
     return _quesbank[_quesnumber].quesanswer;
+  }
+  bool isFinished(){
+  if(_quesnumber >= _quesbank.length-1)
+  {
+    print('Now returning true');
+    return true;
+  }
+  else{
+    return false;
+  }
+  }
+
+  void reset(){
+    _quesnumber = 0;
   }
 }
